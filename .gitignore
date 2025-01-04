@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Smart-ManagementService/.vs/Smart-ManagementService
+/Smart-ManagementService/bin/Debug/net8.0
+/Smart-ManagementService/obj
+/SmartMangement.Application/bin/Debug/net8.0
+/SmartMangement.Application/obj
+/SmartMangement.Authentication/bin/Debug/net8.0
+/SmartMangement.Authentication/obj
+/SmartMangement.Domain/bin/Debug/net8.0
+/SmartMangement.Domain/obj
+/SmartMangement.Infrastructure/bin/Debug/net8.0
+/SmartMangement.Infrastructure/obj
+/SmartMangement.Presentation/bin/Debug/net8.0
+/SmartMangement.Presentation/obj

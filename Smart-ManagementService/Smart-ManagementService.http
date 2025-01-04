@@ -1,0 +1,6 @@
+@Smart_ManagementService_HostAddress = http://localhost:5087
+
+GET {{Smart_ManagementService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

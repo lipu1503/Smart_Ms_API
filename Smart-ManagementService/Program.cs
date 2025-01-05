@@ -7,8 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
 Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-IConfiguration configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsetting.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("appsetting." + builder.Environment.EnvironmentName + ".json", optional: true)
+IConfiguration configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("appsettings." + builder.Environment.EnvironmentName + ".json", optional: true)
     .AddEnvironmentVariables().Build();
 AppConfigSetting.Suit = configuration;
 AppConfigSetting.HostEnvironment = builder.Environment;
@@ -51,11 +53,22 @@ if (environment is not null && (environment.Contains("Dev") || environment.Conta
         C.SwaggerEndpoint("/swagger/v1/swagger.json", "Smart Management API Documentation");
     });
 }
-ApplicationHttpContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+//ApplicationHttpContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
-app.MapControllers();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.UseCors(options =>
+options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowedToAllowWildcardSubdomains()
+);
+
+//app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapSwagger();
+});
 
 app.Run();

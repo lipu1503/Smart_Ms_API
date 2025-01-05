@@ -2,12 +2,12 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using Smart_ManagementService.Controllers;
 using SmartManagement.Common;
 using SmartManagement.Domain.Utilities;
 using SmartManagement.Infrastructure.Cache;
 using SmartManagement.Infrastructure.Result;
 using SmartMangement.Infrastructure.Extensions;
+using SmartMangement.Presentation;
 using System.Text;
 
 namespace Smart_ManagementService.Extensions
@@ -72,12 +72,12 @@ namespace Smart_ManagementService.Extensions
                         }, new string[] { }
                     }
                 });
-                var presName = $"{typeof(UserController).Assembly.GetName().Name}.xml";
+                var presName = $"{typeof(LoginController).Assembly.GetName().Name}.xml";
                 var presPath = Path.Combine(AppContext.BaseDirectory, presName);
                 var domName = $"{typeof(Result).Assembly.GetName().Name}.xml";
                 var domPath = Path.Combine(AppContext.BaseDirectory, domName);
-                option.IncludeXmlComments(presPath);
-                option.IncludeXmlComments(domPath);
+                //option.IncludeXmlComments(presPath);
+                //option.IncludeXmlComments(domPath);
             });
         }
         public static string GetEnvironmentName(this IServiceCollection services)
